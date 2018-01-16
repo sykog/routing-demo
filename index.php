@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     // require autoload file
     require_once('vendor/autoload.php');
 
@@ -45,8 +47,17 @@
             $f3->set('last', $params['last']);
             $f3->set('message', 'Hi');
 
+            $_SESSION['first'] = $f3->get('first');
+            $_SESSION['last'] = $f3->get('last');
+
             $template = new Template();
             echo $template->render('views/hello.html');
+        }
+    );
+
+     // define a route using parameters
+    $f3->route('GET /hi-again', function($f3, $params) {
+            echo "Hi again, ".$_SESSION['first'];
         }
     );
 
