@@ -32,6 +32,37 @@
         }
     );
 
+    // define a route using a template
+    $f3->route('GET /jewelry/rings/toe-rings', function() {
+            $template = new Template();
+            echo $template->render('views/toe-rings.html');
+        }
+    );
+
+    // define a route using parameters
+    $f3->route('GET /hello/@name', function($f3, $params) {
+            $name = $params['name'];
+            echo "<h1>Hello, $name!</h1>";
+        }
+    );
+
+    // define a route using parameters
+    $f3->route('GET /language/@lang', function($f3, $params) {
+            switch($params['lang']) {
+                case 'swahili':
+                    echo 'Jumbo!'; break;
+                case 'spanish':
+                    echo 'Hola!'; break;
+                case 'russian':
+                    echo 'Privet!'; break;
+                case 'farsi':
+                    echo'Salam!'; break;
+                defalut:
+                    echo 'Hello!'; break;
+            }
+        }
+    );
+
     // run fat free
     $f3->run();
 
